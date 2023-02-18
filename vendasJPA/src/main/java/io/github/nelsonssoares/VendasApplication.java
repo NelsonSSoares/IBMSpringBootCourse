@@ -22,33 +22,17 @@ public class VendasApplication {
 			Cliente cliente = new Cliente();
 			
 			cliente.setNome("Nelson");
-			clientes.salvar(cliente);
-			
-
+			clientes.save(cliente);		
 			Cliente cliente2 = new Cliente("Juarez");
-			clientes.salvar(cliente2);
+			clientes.save(cliente2);
+			
+			boolean exists = clientes.existsByNome("Nelson");
+			
+			System.out.println("Cliente Nelson já existe?"+exists);
 			
 			
-			System.out.println("Listando todos os Clientes");
-			List<Cliente>todosClientes = clientes.obterTodos();
-			todosClientes.forEach(System.out::println);
-
-			
-			System.out.println("Atualizando Clientes");
-			todosClientes.forEach(c -> {
-				c.setNome(c.getNome() + "Updated");
-				clientes.atualiza(c);
-			});
-//			
-			//clientes.deletar(2);
-			System.out.println("Buscando Cliente por Nome");
-			clientes.buscarPorNome("Nel").forEach(System.out::println);
 			
 			
-			System.out.println("Deletando Cliente 2");
-			clientes.deletar(2);
-			todosClientes = clientes.obterTodos();
-			System.out.println(todosClientes);
 			
 			
 		};
