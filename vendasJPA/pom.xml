@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.github.nelsonssoares</groupId>
-	<artifactId>vendasJDBC</artifactId>
+	<artifactId>vendasJPA</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>vendasJDBC</name>
+	<name>vendasJPA</name>
 	<description>API de Vendas</description>
 	<properties>
 		<java.version>17</java.version>

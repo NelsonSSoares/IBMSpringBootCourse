@@ -34,11 +34,11 @@ public class VendasApplication {
 			todosClientes.forEach(System.out::println);
 
 			
-//			System.out.println("Atualizando Clientes");
-//			todosClientes.forEach(c -> {
-//				c.setNome(c.getNome() + "Updated");
-//				clientes.atualiza(c);
-//			});
+			System.out.println("Atualizando Clientes");
+			todosClientes.forEach(c -> {
+				c.setNome(c.getNome() + "Updated");
+				clientes.atualiza(c);
+			});
 //			
 			//clientes.deletar(2);
 			System.out.println("Buscando Cliente por Nome");
