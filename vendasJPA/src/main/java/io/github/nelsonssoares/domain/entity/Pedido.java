@@ -2,13 +2,42 @@ package io.github.nelsonssoares.domain.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
+import org.hibernate.annotations.ForeignKey;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table
 public class Pedido {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	private Cliente cliente;
+	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id") 
+	private Cliente cliente; //chave estrangeira
+	
+	@Column(name = "data_pedido")
 	private LocalDate dataPedido;
+	
+	@Column(name = "total", length = 20, precision = 2) //numeric (20,2)
 	private BigDecimal total;
+	
+	@OneToMany(mappedBy = "pedido")
+	private List<ItemPedido> items;
+	
+	
 	
 	public Integer getId() {
 		return id;
