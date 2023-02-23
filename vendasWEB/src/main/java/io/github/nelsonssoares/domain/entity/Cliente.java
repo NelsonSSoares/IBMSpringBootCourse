@@ -28,6 +28,8 @@ public class Cliente {
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	private Set<Pedido> pedidos;
 	
+	private String cpf; 
+	
 	public Cliente(){
 		
 	}
@@ -36,13 +38,22 @@ public class Cliente {
 		this.nome = nome;
 	}
 	
-	public Cliente(Integer id, String nome) {
+	public Cliente(Integer id, String nome, String cpf) {
+		this.cpf = cpf;
 		this.id = id;
 		this.nome = nome;
 	}
 	
 	
-	
+	@Column(name ="cpf", length = 11)
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
 	public Set<Pedido> getPedidos() {
 		return pedidos;
 	}
@@ -66,8 +77,9 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + "]";
+		return "Cliente [id=" + id + ", nome=" + nome + ", pedidos=" + pedidos + ", cpf=" + cpf + "]";
 	}
+
 	
 	
 	
