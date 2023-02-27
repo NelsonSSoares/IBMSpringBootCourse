@@ -4,6 +4,7 @@ public class ItemPedidoDTO {
 	
 	private Integer produto;
 	private Integer quantidade;
+	
 	public Integer getProduto() {
 		return produto;
 	}
@@ -19,3 +20,14 @@ public class ItemPedidoDTO {
 	
 	
 }
+
+/*
+ * LOMBOK ANNOTATIONS
+ * 
+ * @GETTERS
+ * @SETTERS
+ * @NOARGSCONSTRUCTOR
+ * @ALLARGSCONSTRUCTOR
+ * @DATA
+ * @TOSTRING
+ */
