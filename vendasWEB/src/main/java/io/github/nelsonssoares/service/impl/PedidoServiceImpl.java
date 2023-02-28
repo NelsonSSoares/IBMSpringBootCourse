@@ -12,10 +12,12 @@ import io.github.nelsonssoares.domain.entity.Cliente;
 import io.github.nelsonssoares.domain.entity.ItemPedido;
 import io.github.nelsonssoares.domain.entity.Pedido;
 import io.github.nelsonssoares.domain.entity.Produto;
+import io.github.nelsonssoares.domain.enums.StatusPedido;
 import io.github.nelsonssoares.domain.repository.Clientes;
 import io.github.nelsonssoares.domain.repository.ItemsPedido;
 import io.github.nelsonssoares.domain.repository.Pedidos;
 import io.github.nelsonssoares.domain.repository.Produtos;
+import io.github.nelsonssoares.exception.PedidoNaoEncontradoException;
 import io.github.nelsonssoares.exception.RegraNegocioException;
 import io.github.nelsonssoares.rest.dto.ItemPedidoDTO;
 import io.github.nelsonssoares.rest.dto.PedidoDTO;
@@ -30,14 +32,19 @@ public class PedidoServiceImpl implements PedidoService {
 	private final Produtos produtosRepo;
 	private final ItemsPedido itemsPedidoRepo;
 	
-	public PedidoServiceImpl(Pedidos pedidoRepo, Clientes clientesRepo, Produtos produtosRepo, ItemsPedido itemsPedidoRepo) {
+
+	
+	public PedidoServiceImpl(Pedidos pedidoRepo, Clientes clientesRepo, Produtos produtosRepo,
+			ItemsPedido itemsPedidoRepo) {
+		super();
 		this.pedidoRepo = pedidoRepo;
 		this.clientesRepo = clientesRepo;
 		this.produtosRepo = produtosRepo;
 		this.itemsPedidoRepo = itemsPedidoRepo;
-
 	}
-	
+
+
+
 	@Transactional // só permite armazenamento no DB caso tudo ocorra com sucesso, do contrario é feito um rollback e a operação é desfeita
 	@Override
 	public Pedido salvar(PedidoDTO dto) {
@@ -54,6 +61,7 @@ public class PedidoServiceImpl implements PedidoService {
 		pedidoRepo.save(pedido);
 		itemsPedidoRepo.saveAll(itemPedido);
 		pedido.setItems(itemPedido);
+		pedido.setStatus(StatusPedido.REALIZADO);
 		return pedido;
 	}
 	
@@ -83,5 +91,16 @@ public class PedidoServiceImpl implements PedidoService {
 	public Optional<Pedido> obterPedidoCompleto(Integer id) {
 		
 		return pedidoRepo.findByIdFetchItens(id);
+	}
+
+
+	@Transactional
+	@Override
+	public void atualizaStatus(Integer id, StatusPedido statusPedido) {
+		pedidoRepo.findById(id)
+		.map(pedido -> {
+			pedido.setStatus(statusPedido);
+			return pedidoRepo.save(pedido); 
+		}).orElseThrow(()-> new PedidoNaoEncontradoException());
 	}
 }

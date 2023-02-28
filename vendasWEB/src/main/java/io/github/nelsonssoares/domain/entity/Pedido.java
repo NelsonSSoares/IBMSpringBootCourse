@@ -6,8 +6,11 @@ import java.util.List;
 
 import org.hibernate.annotations.ForeignKey;
 
+import io.github.nelsonssoares.domain.enums.StatusPedido;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,6 +36,10 @@ public class Pedido {
 	
 	@Column(name = "total", precision = 20, scale = 2) //numeric (20,2)
 	private BigDecimal total;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status")
+	private StatusPedido status;
 	
 	@OneToMany(mappedBy = "pedido")
 	private List<ItemPedido> items;
@@ -69,6 +76,14 @@ public class Pedido {
 		this.total = total;
 	}
 
+	public StatusPedido getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusPedido status) {
+		this.status = status;
+	}
+
 	public List<ItemPedido> getItems() {
 		return items;
 	}
@@ -80,14 +95,9 @@ public class Pedido {
 	@Override
 	public String toString() {
 		return "Pedido [id=" + id + ", cliente=" + cliente + ", dataPedido=" + dataPedido + ", total=" + total
-				+ ", items=" + items + "]";
+				+ ", status=" + status + ", items=" + items + "]";
 	}
-	
-	
-	
-	
-	
-	
+
 	
 	
 }
