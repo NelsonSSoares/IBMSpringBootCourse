@@ -22,9 +22,10 @@ import io.github.nelsonssoares.exception.RegraNegocioException;
 import io.github.nelsonssoares.rest.dto.ItemPedidoDTO;
 import io.github.nelsonssoares.rest.dto.PedidoDTO;
 import io.github.nelsonssoares.service.PedidoService;
+import lombok.RequiredArgsConstructor;
 
 @Service
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class PedidoServiceImpl implements PedidoService {
 	
 	private final Pedidos pedidoRepo;
@@ -34,14 +35,14 @@ public class PedidoServiceImpl implements PedidoService {
 	
 
 	
-	public PedidoServiceImpl(Pedidos pedidoRepo, Clientes clientesRepo, Produtos produtosRepo,
-			ItemsPedido itemsPedidoRepo) {
-		super();
-		this.pedidoRepo = pedidoRepo;
-		this.clientesRepo = clientesRepo;
-		this.produtosRepo = produtosRepo;
-		this.itemsPedidoRepo = itemsPedidoRepo;
-	}
+//	public PedidoServiceImpl(Pedidos pedidoRepo, Clientes clientesRepo, Produtos produtosRepo,
+//			ItemsPedido itemsPedidoRepo) {
+//		super();
+//		this.pedidoRepo = pedidoRepo;
+//		this.clientesRepo = clientesRepo;
+//		this.produtosRepo = produtosRepo;
+//		this.itemsPedidoRepo = itemsPedidoRepo;
+//	}
 
 
 
