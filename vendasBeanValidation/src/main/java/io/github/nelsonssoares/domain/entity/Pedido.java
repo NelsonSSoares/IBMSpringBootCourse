@@ -1,5 +1,10 @@
 package io.github.nelsonssoares.domain.entity;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
+
+import io.github.nelsonssoares.domain.enums.StatusPedido;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -14,14 +19,6 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import io.github.nelsonssoares.domain.enums.StatusPedido;
 
 @Data
 @AllArgsConstructor

@@ -12,15 +12,15 @@ public class ItemPedidoDTO {
 	private Integer produto;
 	private Integer quantidade;
 	
-	public ItemPedidoDTO() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public ItemPedidoDTO(Integer produto, Integer quantidade) {
-		super();
-		this.produto = produto;
-		this.quantidade = quantidade;
-	}
+//	public ItemPedidoDTO() {
+//		// TODO Auto-generated constructor stub
+//	}
+//	
+//	public ItemPedidoDTO(Integer produto, Integer quantidade) {
+//		super();
+//		this.produto = produto;
+//		this.quantidade = quantidade;
+//	}
 	public Integer getProduto() {
 		return produto;
 	}

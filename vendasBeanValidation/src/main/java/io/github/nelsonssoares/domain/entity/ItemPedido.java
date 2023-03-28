@@ -1,3 +1,4 @@
+
 package io.github.nelsonssoares.domain.entity;
 
 import lombok.AllArgsConstructor;
