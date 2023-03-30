@@ -1,24 +1,29 @@
+/*
 package io.github.nelsonssoares.config;
 
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-
+@Configuration
 @EnableWebSecurity
-public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	// METODO DE AUTENTICAÇÃO
-	//@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		//super.configure(auth)
+	@Bean
+	public PasswordEncoder passwordEncoder(){
+		return new BCryptPasswordEnconder();
 	}
-	//METODO DE AUTORIZAÇÃO
-	//@Override
-	protected void configure(HttpSecurity http)throws Exception{
-		//super.configure(http)
+	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth)throws Exception{
+		super.configure(auth);
+		
+	}
+	
+	@Override
+	protected void configure(){
+		super.configure(http);
 	}
 	
 	
 }
+*/
