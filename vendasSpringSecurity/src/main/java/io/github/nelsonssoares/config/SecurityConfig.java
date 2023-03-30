@@ -15,13 +15,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth)throws Exception{
-		super.configure(auth);
+		auth.inMemoryAuthentication().passwordEncoder(passwordEncoder())
+		.withUser("Fulano")
+		.password(passwordEncoder.encode("123"))
+		.roles("USER") //PODE COLOCAR QUANTAS ROLES QUISER, SEPARADOS POR VIRGULA
 		
 	}
 	
 	@Override
-	protected void configure(){
-		super.configure(http);
+	protected void configure(HttpSecurity http) throws Exception{
+		http
+		.csrf().disable
+		.authorizeRequests()		//.hasAuthority("MANTER USUARIO")
+		.antMatchers("/api/clientes/**")
+		.authenticated().hasRole("USER")
+		.antMatchers("/api/produtos/**")
+		.hasRole("ADMIN")
+		.antMatchers("/api/pedidos/**")
+		.hasRole("USER")
+		.and()
+		//.formLogin(); // JA VEM FORMULARIO PRONTO DO SPRING, SENDO POSSIVEL COLOCAR PERSONALIZADA ATRAVES DO ENDPOINT "/login.html"
+		.httpBasic(); //REQUISIÇÃO VIA HEADER DA REQUISIÇÃO
 	}
 	
 	
