@@ -35,6 +35,7 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+    
 
     @Column(name = "data_pedido")
     private LocalDate dataPedido;
