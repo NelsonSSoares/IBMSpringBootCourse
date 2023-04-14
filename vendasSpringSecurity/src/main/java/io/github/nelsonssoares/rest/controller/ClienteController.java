@@ -45,7 +45,7 @@ public class ClienteController {
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete( @PathVariable Integer id ){
+     public void delete( @PathVariable Integer id ){
         clientes.findById(id)
                 .map( cliente -> {
                     clientes.delete(cliente );
